@@ -9,6 +9,7 @@ def parseLine(line):
     numFriends = int(fields[3])
     return (age, numFriends)
 
+#text file format:id,name,age,NoOfFrieds
 lines = sc.textFile("file:///Users/adiyen/poc/udemy-courses/sparkCourse/fakefriends.csv")
 rdd = lines.map(lambda x:parseLine(x))
 totalsByAge = rdd.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1]))
