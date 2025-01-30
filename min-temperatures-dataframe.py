@@ -21,7 +21,7 @@ minTemps = df.filter(df.measure_type == "TMIN")
 stationTemps = minTemps.select("stationID", "temperature")
 
 # Aggregate to find minimum temperature for every station
-minTempsByStation = stationTemps.groupBy("stationID").min("temperature").alias("min_temp")
+minTempsByStation = stationTemps.groupBy("stationID").min("temperature")
 minTempsByStation.show()
 
 # Convert temperature to fahrenheit and sort the dataset
