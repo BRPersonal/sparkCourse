@@ -33,6 +33,8 @@ connections = lines.withColumn("id", func.split(func.trim(func.col("value")), " 
     
 #order by connections desc and get the first record (pyspark.sql.types.Row)
 mostPopular = connections.sort(func.col("connections").desc()).first()
+
+#lookup name using id
 mostPopularName = names.filter(func.col("id") == mostPopular[0]).select("name").first()
 
 print(mostPopularName[0] + " is the most popular superhero with " + str(mostPopular[1]) + " co-appearances.")
